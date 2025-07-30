@@ -35,6 +35,19 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
+## Geologica UI Kit
+
+The project ships with a design system located in `utils/GeologicaUIKit.ts`. It provides themed colors, spacing, typography and a collection of styled component presets. Import helpers to access the styles with dark or light mode support:
+
+```ts
+import { ComponentStyles, getThemedStyles, getThemedColors } from '@/utils/GeologicaUIKit';
+
+const styles = getThemedStyles(isDarkMode);
+const colors = getThemedColors(isDarkMode);
+```
+
+Use these styles throughout the app to ensure consistent UI.
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
