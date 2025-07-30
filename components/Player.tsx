@@ -1,27 +1,39 @@
-import { Audio } from 'expo-av';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { MaterialIcons } from "@expo/vector-icons";
+import { Audio } from "expo-av";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
-import { STREAM_URL } from '@/utils/constants';
 import {
+  BorderRadius,
   Colors,
   ComponentStyles,
   DarkModeStyles,
-  BorderRadius,
-} from '@/constants/GeologicaUIKit';
+} from "@/constants/GeologicaUIKit";
+import { STREAM_URL } from "@/utils/constants";
 
 export type PlayerProps = {
   buttonSize?: number;
   iconSize?: number;
 };
 
-export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps) {
+export default function Player({
+  buttonSize = 100,
+  iconSize = 64,
+}: PlayerProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const scale = useSharedValue(1);
+
+  useEffect(() => {
+    // Ensure MaterialIcons font is loaded in case the root layout did not load it
+    MaterialIcons.loadFont();
+  }, []);
 
   useEffect(() => {
     Audio.setAudioModeAsync({
@@ -106,7 +118,7 @@ export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps)
             <ActivityIndicator color={Colors.dark.white} size="large" />
           ) : (
             <MaterialIcons
-              name={isPlaying ? 'pause' : 'play-arrow'}
+              name={isPlaying ? "pause" : "play-arrow"}
               size={iconSize}
               color={Colors.dark.white}
             />
@@ -119,8 +131,8 @@ export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps)
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   pressable: {
     borderRadius: BorderRadius.full,
@@ -128,8 +140,8 @@ const styles = StyleSheet.create({
   button: {
     ...ComponentStyles.primaryButton,
     ...DarkModeStyles.primaryButton,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   pressed: {
     ...ComponentStyles.primaryButtonPressed,
