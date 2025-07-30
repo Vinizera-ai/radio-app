@@ -5,8 +5,19 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { STREAM_URL } from '@/utils/constants';
+import {
+  Colors,
+  ComponentStyles,
+  DarkModeStyles,
+  BorderRadius,
+} from '@/constants/GeologicaUIKit';
 
-export default function Player() {
+export type PlayerProps = {
+  buttonSize?: number;
+  iconSize?: number;
+};
+
+export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const scale = useSharedValue(1);
@@ -55,12 +66,23 @@ export default function Player() {
           scale.value = withTiming(1);
         }}
         onPress={togglePlayback}
-        style={styles.pressable}>
-        <Animated.View style={[styles.button, animatedStyle]}>
+        style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+      >
+        <Animated.View
+          style={[
+            styles.button,
+            {
+              height: buttonSize,
+              width: buttonSize,
+              borderRadius: buttonSize / 2,
+            },
+            animatedStyle,
+          ]}
+        >
           <MaterialIcons
             name={isPlaying ? 'pause' : 'play-arrow'}
-            size={64}
-            color="white"
+            size={iconSize}
+            color={Colors.dark.white}
           />
         </Animated.View>
       </Pressable>
@@ -74,14 +96,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   pressable: {
-    borderRadius: 50,
+    borderRadius: BorderRadius.full,
   },
   button: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    backgroundColor: '#0a7ea4',
+    ...ComponentStyles.primaryButton,
+    ...DarkModeStyles.primaryButton,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  pressed: {
+    ...ComponentStyles.primaryButtonPressed,
+    ...DarkModeStyles.primaryButton,
   },
 });
