@@ -1,6 +1,6 @@
 import { Audio } from 'expo-av';
 import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
@@ -20,15 +20,33 @@ export type PlayerProps = {
 export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const scale = useSharedValue(1);
 
+  useEffect(() => {
+    Audio.setAudioModeAsync({
+      staysActiveInBackground: true,
+      playsInSilentModeIOS: true,
+    });
+  }, []);
+
   async function loadSound() {
-    const { sound: playbackObject } = await Audio.Sound.createAsync(
-      { uri: STREAM_URL },
-      { shouldPlay: true }
-    );
-    setSound(playbackObject);
-    setIsPlaying(true);
+    setIsLoading(true);
+    try {
+      await Audio.setAudioModeAsync({
+        staysActiveInBackground: true,
+        playsInSilentModeIOS: true,
+      });
+
+      const { sound: playbackObject } = await Audio.Sound.createAsync(
+        { uri: STREAM_URL },
+        { shouldPlay: true }
+      );
+      setSound(playbackObject);
+      setIsPlaying(true);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   async function togglePlayback() {
@@ -41,8 +59,13 @@ export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps)
       await sound.pauseAsync();
       setIsPlaying(false);
     } else {
-      await sound.playAsync();
-      setIsPlaying(true);
+      setIsLoading(true);
+      try {
+        await sound.playAsync();
+        setIsPlaying(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
   }
 
@@ -79,11 +102,15 @@ export default function Player({ buttonSize = 100, iconSize = 64 }: PlayerProps)
             animatedStyle,
           ]}
         >
-          <MaterialIcons
-            name={isPlaying ? 'pause' : 'play-arrow'}
-            size={iconSize}
-            color={Colors.dark.white}
-          />
+          {isLoading ? (
+            <ActivityIndicator color={Colors.dark.white} size="large" />
+          ) : (
+            <MaterialIcons
+              name={isPlaying ? 'pause' : 'play-arrow'}
+              size={iconSize}
+              color={Colors.dark.white}
+            />
+          )}
         </Animated.View>
       </Pressable>
     </View>
