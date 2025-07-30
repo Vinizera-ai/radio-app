@@ -1,6 +1,7 @@
 import { Image } from 'expo-image';
 import { View, StyleSheet } from 'react-native';
 import { ThemedText } from './ThemedText';
+import { Colors, Spacing, Typography, BorderRadius } from '@/constants/GeologicaUIKit';
 
 export default function RadioCard({
   image,
@@ -23,25 +24,25 @@ export default function RadioCard({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginVertical: 24,
+    marginVertical: Spacing.lg,
   },
   image: {
     width: 200,
     height: 200,
-    borderRadius: 16,
-    marginBottom: 16,
+    borderRadius: BorderRadius.lg,
+    marginBottom: Spacing.md,
   },
   station: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: 'white',
+    fontSize: Typography.sizes.xxl,
+    fontWeight: Typography.fontWeights.bold as any,
+    color: Colors.dark.white,
     textAlign: 'center',
   },
   song: {
-    fontSize: 14,
-    color: 'white',
+    fontSize: Typography.sizes.sm,
+    color: Colors.dark.quaternary,
     opacity: 0.8,
-    marginTop: 4,
+    marginTop: Spacing.sm,
     textAlign: 'center',
   },
 });
