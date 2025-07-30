@@ -1,4 +1,4 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Audio } from "expo-av";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, View } from "react-native";
@@ -29,12 +29,6 @@ export default function Player({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const scale = useSharedValue(1);
-
-  useEffect(() => {
-    // Ensure MaterialIcons font is loaded in case the root layout did not load it
-    MaterialIcons.loadFont();
-  }, []);
-
   useEffect(() => {
     Audio.setAudioModeAsync({
       staysActiveInBackground: true,
@@ -117,8 +111,8 @@ export default function Player({
           {isLoading ? (
             <ActivityIndicator color={Colors.dark.white} size="large" />
           ) : (
-            <MaterialIcons
-              name={isPlaying ? "pause" : "play-arrow"}
+            <IconSymbol
+              name={isPlaying ? 'pause.fill' : 'play.fill'}
               size={iconSize}
               color={Colors.dark.white}
             />
