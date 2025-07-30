@@ -1,6 +1,11 @@
 import { Image, View, StyleSheet } from 'react-native';
 import { ThemedText } from './ThemedText';
-import { IconSymbol } from './ui/IconSymbol';
+import {
+  Colors,
+  Spacing,
+  Typography,
+  BorderRadius,
+} from '@/constants/GeologicaUIKit';
 
 export default function TopBar({
   title,
@@ -13,7 +18,6 @@ export default function TopBar({
 }) {
   return (
     <View style={styles.container}>
-      <IconSymbol name="chevron.right" size={24} color="white" />
       <View style={styles.textContainer}>
         <ThemedText style={styles.title}>{title}</ThemedText>
         {subtitle && <ThemedText style={styles.subtitle}>{subtitle}</ThemedText>}
@@ -28,26 +32,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
   },
   textContainer: {
     flex: 1,
-    marginLeft: 8,
+    marginLeft: Spacing.sm,
   },
   title: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: 'white',
+    fontSize: Typography.sizes.xl,
+    fontWeight: Typography.fontWeights.semibold as any,
+    color: Colors.dark.white,
   },
   subtitle: {
-    fontSize: 14,
-    color: 'white',
+    fontSize: Typography.sizes.sm,
+    color: Colors.dark.white,
     opacity: 0.8,
   },
   avatar: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: BorderRadius.full,
   },
 });

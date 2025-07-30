@@ -1,6 +1,7 @@
 import { View, Pressable, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ThemedText } from './ThemedText';
+import { Colors, Spacing, Typography } from '@/constants/GeologicaUIKit';
 
 export type NavItem = {
   icon: React.ComponentProps<typeof MaterialIcons>['name'];
@@ -16,7 +17,7 @@ export default function BottomNavigation({ items }: { items: NavItem[] }) {
           <MaterialIcons
             name={item.icon}
             size={24}
-            color={item.active ? '#1F6AF0' : 'white'}
+            color={item.active ? Colors.light.primary : Colors.dark.white}
           />
           <ThemedText style={[styles.label, item.active && styles.activeLabel]}>
             {item.label}
@@ -31,19 +32,19 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 8,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    paddingVertical: Spacing.sm,
+    backgroundColor: Colors.dark.secondary,
   },
   item: {
     alignItems: 'center',
-    padding: 8,
+    padding: Spacing.sm,
   },
   label: {
-    fontSize: 12,
-    color: 'white',
-    marginTop: 4,
+    fontSize: Typography.sizes.xs,
+    color: Colors.dark.white,
+    marginTop: Spacing.xs,
   },
   activeLabel: {
-    color: '#1F6AF0',
+    color: Colors.light.primary,
   },
 });
