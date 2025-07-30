@@ -1,11 +1,11 @@
-import { Image, View, StyleSheet } from 'react-native';
-import { ThemedText } from './ThemedText';
 import {
+  BorderRadius,
   Colors,
   Spacing,
   Typography,
-  BorderRadius,
 } from '@/constants/GeologicaUIKit';
+import { Image, StyleSheet, View } from 'react-native';
+import { ThemedText } from './ThemedText';
 
 export default function TopBar({
   title,

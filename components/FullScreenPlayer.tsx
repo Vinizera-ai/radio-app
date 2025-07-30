@@ -1,23 +1,22 @@
+import {
+  BorderRadius,
+  Colors,
+  ComponentStyles,
+  DarkModeStyles,
+  Spacing,
+  Typography,
+} from '@/constants/GeologicaUIKit';
+import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
   Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import Animated, { useSharedValue, withTiming, useAnimatedStyle } from 'react-native-reanimated';
-import { MaterialIcons } from '@expo/vector-icons';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Player from './Player';
-import BottomNavigation from './BottomNavigation';
-import {
-  Colors,
-  Typography,
-  Spacing,
-  ComponentStyles,
-  BorderRadius,
-  DarkModeStyles,
-} from '@/constants/GeologicaUIKit';
 
 export default function FullScreenPlayer() {
   const leftScale = useSharedValue(1);
@@ -85,14 +84,7 @@ export default function FullScreenPlayer() {
         </Pressable>
       </View>
 
-      <BottomNavigation
-        items={[
-          { icon: 'radio', label: 'Radio', active: true },
-          { icon: 'explore', label: 'Discover' },
-          { icon: 'library-music', label: 'Library' },
-          { icon: 'settings', label: 'Settings' },
-        ]}
-      />
+    
     </SafeAreaView>
   );
 }
