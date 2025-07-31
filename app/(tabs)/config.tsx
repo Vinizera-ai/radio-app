@@ -1,19 +1,5 @@
-import { View, StyleSheet } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
+import ExampleContent from '@/components/ExampleContent';
 
 export default function ConfigScreen() {
-  return (
-    <View style={styles.container}>
-      <ThemedText>Config Screen</ThemedText>
-    </View>
-  );
+  return <ExampleContent title="Config" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#081023',
-  },
-});

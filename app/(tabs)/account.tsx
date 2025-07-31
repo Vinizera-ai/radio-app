@@ -1,19 +1,5 @@
-import { View, StyleSheet } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
+import ExampleContent from '@/components/ExampleContent';
 
 export default function AccountScreen() {
-  return (
-    <View style={styles.container}>
-      <ThemedText>Account Screen</ThemedText>
-    </View>
-  );
+  return <ExampleContent title="Conta" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#081023',
-  },
-});
