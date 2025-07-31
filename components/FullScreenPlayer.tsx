@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Player from './Player';
+import CastButton from './CastButton';
 import { startScreencast } from '@/services/screencast';
 import { STREAM_URL } from '@/utils/constants';
 
@@ -78,12 +79,10 @@ export default function FullScreenPlayer() {
       </View>
 
       <View style={styles.extraControls}>
-        <Pressable
+        <CastButton
           onPress={() => startScreencast(STREAM_URL)}
-          style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}
-        >
-          <MaterialIcons name="cast" size={24} color={Colors.dark.white} />
-        </Pressable>
+          style={styles.iconButton}
+        />
         <Pressable style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}>
           <MaterialIcons name="more-horiz" size={24} color={Colors.dark.white} />
         </Pressable>
