@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Player from './Player';
+import { startScreencast } from '@/services/screencast';
+import { STREAM_URL } from '@/utils/constants';
 
 export default function FullScreenPlayer() {
   const leftScale = useSharedValue(1);
@@ -76,7 +78,10 @@ export default function FullScreenPlayer() {
       </View>
 
       <View style={styles.extraControls}>
-        <Pressable style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}>
+        <Pressable
+          onPress={() => startScreencast(STREAM_URL)}
+          style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}
+        >
           <MaterialIcons name="cast" size={24} color={Colors.dark.white} />
         </Pressable>
         <Pressable style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}>
