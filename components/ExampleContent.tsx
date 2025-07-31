@@ -8,7 +8,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
-export default function TabTwoScreen() {
+export default function ExampleContent({ title = 'Explore' }: { title?: string }) {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -21,14 +21,16 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+        <ThemedText type="title">{title}</ThemedText>
       </ThemedView>
       <ThemedText>This app includes example code to help you get started.</ThemedText>
       <Collapsible title="File-based routing">
         <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
+          This app has multiple screens such as{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>,{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/news.tsx</ThemedText>,{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/account.tsx</ThemedText>, and{' '}
+          <ThemedText type="defaultSemiBold">app/(tabs)/config.tsx</ThemedText>.
         </ThemedText>
         <ThemedText>
           The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
