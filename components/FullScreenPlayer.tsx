@@ -18,6 +18,7 @@ import {
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Player from './Player';
 import CastButton from './CastButton';
+import AirPlayButton from './AirPlayButton';
 import { startScreencast } from '@/services/screencast';
 import { STREAM_URL } from '@/utils/constants';
 
@@ -83,6 +84,7 @@ export default function FullScreenPlayer() {
           onPress={() => startScreencast(STREAM_URL)}
           style={styles.iconButton}
         />
+        <AirPlayButton style={styles.iconButton} />
         <Pressable style={({ pressed }) => [styles.iconButton, pressed && styles.iconPressed]}>
           <MaterialIcons name="more-horiz" size={24} color={Colors.dark.white} />
         </Pressable>
