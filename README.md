@@ -55,3 +55,8 @@ This project integrates with **react-native-google-cast**. Install the library
 and run the app on a device with Cast support to stream the radio to an external
 receiver. If the native module is missing, the cast button will gracefully
 fallback to a no-op implementation.
+
+The full screen player also exposes an **AirPlay** button powered by
+`react-native-airplay-btn`. On iOS devices this opens the system route picker so
+you can stream audio to Apple TVs or other AirPlay receivers. If the native
+module is unavailable, the button simply renders an icon.
