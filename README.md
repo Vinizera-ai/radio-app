@@ -51,4 +51,7 @@ Join our community of developers creating universal apps.
 
 ## Screencast
 
-The cast button in the full screen player currently logs a screencast request. Integrate a proper casting solution in `services/screencast.js`.
+This project integrates with **react-native-google-cast**. Install the library
+and run the app on a device with Cast support to stream the radio to an external
+receiver. If the native module is missing, the cast button will gracefully
+fallback to a no-op implementation.
